@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: order-service
+
+#config datasource
+  datasource:
+    url: jdbc:postgresql://localhost:5992/order_db
+    username: order
+    password: order
+    driver-class-name: org.postgresql.Driver
+
+# config for ddl
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 9003
+
+# OpenTelemetry configuration
+otel:
+  sdk:
+    disabled: false
+  exporter:
+    otlp:
+      endpoint: http://localhost:4318
+      protocol: http/protobuf
+  resource:
+    attributes:
+      service.name: order-service
+      service.version: 1.0.0
+      deployment.environment: development
+  traces:
+    exporter: otlp
+  metrics:
+    exporter: none
+  logs:
+    exporter: none
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{trace_id:-},%X{span_id:-}]"
