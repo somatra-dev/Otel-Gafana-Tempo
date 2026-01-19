@@ -2,7 +2,7 @@
 
 This project demonstrates distributed tracing across Spring Boot microservices using OpenTelemetry, Grafana Tempo, and Grafana.
 
-## Architecture
+## Architecture Flow Running
 
 ```
 ┌─────────────────┐         ┌─────────────────┐
@@ -272,10 +272,6 @@ product-service: GET /products/1/orders  █████████████
   - Database queries
   - Exception details (if any)
   - Custom attributes
-
-### 4. Enable Auto-Refresh
-
-Click the refresh dropdown (top-right) and select an interval (5s, 10s, etc.)
 
 ## Trace Data Model
 
